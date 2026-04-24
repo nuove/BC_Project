@@ -1,57 +1,64 @@
-# Sample Hardhat 3 Beta Project (`node:test` and `viem`)
+# Decentralized Identity Verification System
 
-This project showcases a Hardhat 3 Beta project using the native Node.js test runner (`node:test`) and the `viem` library for Ethereum interactions.
+A prototype decentralized identity verification system built with Solidity (Hardhat), IPFS for encrypted off-chain storage, and a React + ethers.js frontend.
 
-To learn more about the Hardhat 3 Beta, please visit the [Getting Started guide](https://hardhat.org/docs/getting-started#getting-started-with-hardhat-3). To share your feedback, join our [Hardhat 3 Beta](https://hardhat.org/hardhat3-beta-telegram-group) Telegram group or [open an issue](https://github.com/NomicFoundation/hardhat/issues/new) in our GitHub issue tracker.
+## Overview
 
-## Project Overview
+This repository contains smart contracts, deployment scripts, and a prototype interface for registering digital identities, storing encrypted attributes on IPFS, selectively disclosing attributes to service providers, and a weighted multi-verifier system for identity verification.
 
-This example project includes:
+## Quickstart
 
-- A simple Hardhat configuration file.
-- Foundry-compatible Solidity unit tests.
-- TypeScript integration tests using [`node:test`](nodejs.org/api/test.html), the new Node.js native test runner, and [`viem`](https://viem.sh/).
-- Examples demonstrating how to connect to different types of networks, including locally simulating OP mainnet.
+Prerequisites
+- Node.js (recommended LTS 18.x or 20.x)
+- npm
+- MetaMask (for frontend interactions)
 
-## Usage
+Install dependencies
 
-### Running Tests
+```bash
+npm install
+```
 
-To run all the tests in the project, execute the following command:
+Compile contracts
 
-```shell
+```bash
+npx hardhat compile
+```
+
+Run tests
+
+```bash
 npx hardhat test
 ```
 
-You can also selectively run the Solidity or `node:test` tests:
+Run a local node (separate terminal)
 
-```shell
-npx hardhat test solidity
-npx hardhat test nodejs
+```bash
+npx hardhat node
 ```
 
-### Make a deployment to Sepolia
+Deploy locally (after starting node)
 
-This project includes an example Ignition module to deploy the contract. You can deploy this module to a locally simulated chain or to Sepolia.
-
-To run the deployment to a local chain:
-
-```shell
-npx hardhat ignition deploy ignition/modules/Counter.ts
+```bash
+npx hardhat run --network localhost scripts/deploy_and_authorize.js
 ```
 
-To run the deployment to Sepolia, you need an account with funds to send the transaction. The provided Hardhat configuration includes a Configuration Variable called `SEPOLIA_PRIVATE_KEY`, which you can use to set the private key of the account you want to use.
+Notes
+- Hardhat may warn that Node 25 is unsupported. Use Node LTS (18 or 20) if you see issues.
+- The deploy script deploys IdentityRegistry and IdentityVerifier and authorizes the verifier-manager on the registry.
 
-You can set the `SEPOLIA_PRIVATE_KEY` variable using the `hardhat-keystore` plugin or by setting it as an environment variable.
+## Project structure
+- contracts/ - Solidity smart contracts (IdentityRegistry.sol, IdentityVerifier.sol, AccessControl.sol)
+- scripts/ - deployment scripts (deploy_and_authorize.js)
+- test/ - tests (add Hardhat tests here)
+- MiniProjectReport.md - project report and documentation
 
-To set the `SEPOLIA_PRIVATE_KEY` config variable using `hardhat-keystore`:
+## Report
+See MiniProjectReport.md for full project report, smart contract design, implementation details, testing plan, and security analysis.
 
-```shell
-npx hardhat keystore set SEPOLIA_PRIVATE_KEY
-```
+## Contributing
+Please open an issue or a pull request. For production use, replace the single-admin model with a multisig and perform a security audit.
 
-After setting the variable, you can run the deployment with the Sepolia network:
+## License
+MIT
 
-```shell
-npx hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
-```
