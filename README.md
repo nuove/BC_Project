@@ -11,7 +11,6 @@ This repository contains smart contracts, deployment scripts, and a prototype in
 Prerequisites
 - Node.js (recommended LTS 18.x or 20.x)
 - npm
-- MetaMask (for frontend interactions)
 
 Install dependencies
 
@@ -57,5 +56,5 @@ Notes
 See MiniProjectReport.md for full project report, smart contract design, implementation details, testing plan, and security analysis.
 
 ## License
-Unilicense
+Unlicense
 
