@@ -56,9 +56,6 @@ Notes
 ## Report
 See MiniProjectReport.md for full project report, smart contract design, implementation details, testing plan, and security analysis.
 
-## Contributing
-Please open an issue or a pull request. For production use, replace the single-admin model with a multisig and perform a security audit.
-
 ## License
-MIT
+Unilicense
 
